@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Kanit&family=Ubuntu&display=swap");
+.ubuntu {
+  font-family: "ubuntu", sans-serif;
+}
+.kanit {
+  font-family: "kanit", sans-serif;
+}
