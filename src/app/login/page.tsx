@@ -1,7 +1,9 @@
 "use client";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 const Register = () => {
+  const router = useRouter();
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
@@ -9,6 +11,9 @@ const Register = () => {
         userName,
         password,
       });
+      if (response.data.success) {
+        router.push("/chat");
+      }
       console.log(response.data);
     } catch (error: any) {
       console.log(error.message);
