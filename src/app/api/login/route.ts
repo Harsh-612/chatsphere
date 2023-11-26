@@ -13,7 +13,7 @@ export async function POST(req: Request) {
     if (user) {
       if (await verify(password, user.Password)) {
         const name = user.Name;
-        const userId = user.userName;
+        const userId = user.userId;
         const email = user.email;
         const response = NextResponse.json({ user, success: true });
         response.cookies.set(
