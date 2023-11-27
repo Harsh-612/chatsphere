@@ -6,7 +6,13 @@ const RightBar = ({ recieverId }: { recieverId: string }) => {
   const [message, setMessage] = useState("");
   const [id, setId] = useState("");
   const [chatArray, setChatArray] = useState<
-    { Text: string; chatId: string; SenderId: string; RecieverId: string }[]
+    {
+      Text: string;
+      chatId: string;
+      SenderId: string;
+      RecieverId: string;
+      sendTime: any;
+    }[]
   >([]);
   const getSenderId = async () => {
     const body = (await axios.get("/api/finduserbyid")).data;
@@ -47,29 +53,43 @@ const RightBar = ({ recieverId }: { recieverId: string }) => {
 
   return (
     <section className="w-[70%] h-full flex flex-col ">
-      <nav className="h-20 mx-8 border-b border-gray-500 flex items-center">
+      <nav className="h-20 mx-8 border-b border-gray-300 flex items-center">
         <h1 className="text-3xl ubuntu font-semibold text-blue-950">{name}</h1>
       </nav>
       <article className="flex-grow">
         {chatArray.map((chat) => (
           <React.Fragment key={chat.chatId}>
             {id === chat.SenderId ? (
-              <div className="w-full h-fit flex justify-start">
-                <div className="w-fit max-w-lg bg-gray-200 px-2 py-1 rounded mx-8 my-1.5">
-                  {chat.Text}
+              <div className="w-full h-fit flex justify-end">
+                <div className="w-fit max-w-lg bg-gray-200 px-2 py-1 rounded mx-8 my-1.5 flex items-end shadow-lg">
+                  {chat.Text}&nbsp;&nbsp;
+                  <p className="text-xs text-gray-400">
+                    {new Date(chat.sendTime).toLocaleTimeString("en-US", {
+                      hour: "numeric",
+                      minute: "numeric",
+                      hour12: false,
+                    })}
+                  </p>
                 </div>
               </div>
             ) : (
-              <div className="w-full h-fit flex justify-end">
-                <div className="w-fit max-w-lg bg-red-500 text-white px-2 py-1 rounded mx-8 my-1.5">
-                  {chat.Text}
+              <div className="w-full h-fit flex justify-start">
+                <div className="w-fit max-w-lg bg-red-500 text-white px-2 py-1 rounded mx-8 my-1.5 flex items-end shadow-lg">
+                  {chat.Text}&nbsp;&nbsp;
+                  <p className="text-xs text-gray-200">
+                    {new Date(chat.sendTime).toLocaleTimeString("en-US", {
+                      hour: "numeric",
+                      minute: "numeric",
+                      hour12: false,
+                    })}
+                  </p>
                 </div>
               </div>
             )}
           </React.Fragment>
         ))}
       </article>
-      <div className="h-20 border-t border-gray-500 mx-8 flex items-center justify-around">
+      <div className="h-20 border-t border-gray-300 mx-8 flex items-center justify-around">
         <div className="px-3 aspect-square rounded-3xl bg-gray-200 flex justify-center items-center text-lg">
           <i className="ri-emoji-sticker-fill text-blue-950 text-lg"></i>
         </div>

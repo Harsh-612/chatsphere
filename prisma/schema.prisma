@@ -8,22 +8,23 @@ datasource db {
 }
 
 model User {
-  userId        String  @id @default(uuid())
+  userId        String @id @default(uuid())
   Name          String
   Password      String
-  userName      String  @unique
-  email         String  @unique
-  SentChats     Chat[]  @relation("SentChats")
-  ReceivedChats Chat[]  @relation("ReceivedChats")
+  userName      String @unique
+  email         String @unique
+  SentChats     Chat[] @relation("SentChats")
+  ReceivedChats Chat[] @relation("ReceivedChats")
 }
 
 model Chat {
-  chatId      String   @id @default(uuid())
-  Text        String
-  Sender      User     @relation("SentChats", fields: [SenderId], references: [userId])
-  SenderId    String
-  Receiver    User     @relation("ReceivedChats", fields: [ReceiverId], references: [userId])
-  ReceiverId  String
-  sendTime    DateTime @default(now())
-  updateTime  DateTime @updatedAt
+  chatId     String   @id @default(uuid())
+  Text       String
+  Sender     User     @relation("SentChats", fields: [SenderId], references: [userId])
+  SenderId   String
+  Receiver   User     @relation("ReceivedChats", fields: [ReceiverId], references: [userId])
+  ReceiverId String
+  sendTime   DateTime @default(now())
+  updateTime DateTime @updatedAt
+  
 }

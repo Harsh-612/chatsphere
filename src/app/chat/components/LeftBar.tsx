@@ -12,7 +12,7 @@ const LeftBar = ({
   const [id, setId] = useState("");
   const getId = async () => {
     try {
-      const senderId = (await axios.get("/api/idhandler")).data;
+      const senderId = (await axios.get("/api/finduserbyid")).data.id;
       setId(senderId);
     } catch (error: any) {
       console.log(error.message);
@@ -30,13 +30,16 @@ const LeftBar = ({
       console.log(error.message);
     }
   };
+
   useEffect(() => {
     findUser();
   }, [search]);
-  useEffect(() => {}, []);
+  useEffect(() => {
+    getId();
+  }, []);
 
   return (
-    <section className="w-[30%] h-full flex flex-col bg-blue-50">
+    <section className="w-[25%] h-full flex flex-col bg-blue-50">
       <div className="w-full h-[80px] flex justify-center items-center bg-sky-100">
         <input
           type="text"
@@ -63,6 +66,7 @@ const LeftBar = ({
             ))
           : ""}
       </div>
+      <div></div>
     </section>
   );
 };
