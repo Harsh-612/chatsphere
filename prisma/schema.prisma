@@ -25,6 +25,5 @@ model Chat {
   Receiver   User     @relation("ReceivedChats", fields: [ReceiverId], references: [userId])
   ReceiverId String
   sendTime   DateTime @default(now())
-  updateTime DateTime @updatedAt
-  
+  updateTime DateTime @updatedAt 
 }

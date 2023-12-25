@@ -25,6 +25,11 @@ const LeftBar = ({
           search,
         });
         setUserArray(users.data);
+      } else if (search == "") {
+        const users = await axios.post("/api/findfriends", {
+          id,
+        });
+        setUserArray(users.data);
       }
     } catch (error: any) {
       console.log(error.message);

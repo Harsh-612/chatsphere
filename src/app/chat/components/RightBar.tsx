@@ -74,7 +74,7 @@ const RightBar = ({ recieverId }: { recieverId: string }) => {
               </div>
             ) : (
               <div className="w-full h-fit flex justify-start">
-                <div className="w-fit max-w-lg bg-red-500 text-white px-2 py-1 rounded mx-8 my-1.5 flex items-end shadow-lg">
+                <div className="w-fit max-w-lg bg-red-500 text-white px-2 py-1 rounded mx-8 my-1.5 flex items-end shadow-lg ">
                   {chat.Text}&nbsp;&nbsp;
                   <p className="text-xs text-gray-200">
                     {new Date(chat.sendTime).toLocaleTimeString("en-US", {

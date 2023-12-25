@@ -13,7 +13,9 @@ export async function POST(req: Request) {
         userName,
       },
     });
-    return NextResponse.json({ user, success: true });
+
+    const response = NextResponse.json({ user, success: true });
+    return response;
   } catch (error: any) {
     return NextResponse.json({ message: error.message, success: false });
   }
