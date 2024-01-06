@@ -49,7 +49,7 @@ const LeftBar = ({
         <input
           type="text"
           className="border border-gray-500 rounded-full w-10/12 px-3 py-1.5"
-          placeholder="Search"
+          placeholder="Search with username"
           value={search}
           onChange={(e) => {
             setSearch(e.target.value);
